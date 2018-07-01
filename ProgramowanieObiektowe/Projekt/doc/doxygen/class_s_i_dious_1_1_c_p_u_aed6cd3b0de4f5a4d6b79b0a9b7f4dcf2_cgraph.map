@@ -1,0 +1,11 @@
+<map id="SIDious.CPU.handlerROR" name="SIDious.CPU.handlerROR">
+<area shape="rect" id="node2" href="$class_s_i_dious_1_1_c_p_u.html#a62ab0a8bbc4746199d4f698d8f2335b6" title="SIDious.CPU.readValue" alt="" coords="239,107,402,133"/>
+<area shape="rect" id="node9" href="$class_s_i_dious_1_1_c_p_u.html#a6f7b466ca79c8830d7a2ca61fba4b246" title="SIDious.CPU.storeValue" alt="" coords="237,157,404,184"/>
+<area shape="rect" id="node10" href="$class_s_i_dious_1_1_c_p_u.html#a5a039bbd0dc9c64eb44f1e37f2ad63dd" title="SIDious.CPU.updateFlags" alt="" coords="232,208,409,235"/>
+<area shape="rect" id="node3" href="$class_s_i_dious_1_1_c_p_u.html#af1ec8f722a632487276b536298ac13d7" title="SIDious.CPU.readWordOperand" alt="" coords="460,208,671,235"/>
+<area shape="rect" id="node4" href="$class_s_i_dious_1_1_memory.html#a0d67be211175a000655082f08e6e5af6" title="SIDious.Memory.readWord" alt="" coords="724,183,903,209"/>
+<area shape="rect" id="node5" href="$class_s_i_dious_1_1_c_p_u.html#aaa8ef8c82ceef6027018eb83ec71f4df" title="SIDious.CPU.readByteOperand" alt="" coords="462,157,669,184"/>
+<area shape="rect" id="node6" href="$class_s_i_dious_1_1_memory.html#a8066523555e540c2a79ea0c169c0c816" title="SIDious.Memory.readByte" alt="" coords="726,81,901,108"/>
+<area shape="rect" id="node7" href="$class_s_i_dious_1_1_c_p_u.html#a76bef463907d15c39b62f95d29e63083" title="SIDious.CPU.readSByteOperand" alt="" coords="457,5,673,32"/>
+<area shape="rect" id="node8" href="$class_s_i_dious_1_1_memory.html#a1c9b108635a1aa23241ece95fed6263a" title="SIDious.Memory.readSByte" alt="" coords="721,5,905,32"/>
+</map>

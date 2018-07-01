@@ -1,0 +1,18 @@
+scene 600 600
+camera 0 8 4 0 0 0 90
+background 0 0 0
+
+matreflec white 1 1 1 0.05 1 300 0.95
+matreflec red 1 0 0 0.8 1 150 0.2
+matreflec green 0 1 0 0.8 1 150 0.2
+matreflec blue 0 0 1 0.8 1 150 0.2
+mattrans pink 1 0.75 0.79 0.1 0 0 0.3 1.04 0.7
+matreflec grey 0.75 0.75 0.75 0.8 0 0 0.2
+
+sphere -4 0 0 2 green
+sphere 4 0 0 2 blue
+sphere 0 2 0 2 pink
+sphere 0 -2 1 3 red
+plane 0 0 -2 0 0 1 grey
+
+light 0 5 5 0.96 0.96 0.96 -100

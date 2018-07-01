@@ -1,0 +1,14 @@
+<map id="SIDious.CPU" name="SIDious.CPU">
+<area shape="rect" id="node2" href="$struct_s_i_dious_1_1_c_p_u_1_1_opcode.html" title="{SIDious.CPU.Opcode\n|+ operation\l+ operand\l|+ Opcode()\l}" alt="" coords="5,395,156,487"/>
+<area shape="rect" id="node3" href="$class_s_i_dious_1_1_s_i_d.html" title="{SIDious.SID\n|&#45; Attacks\l&#45; Releases\l&#45; AttackTimes\l&#45; DecayReleaseTimes\l|+ SID()\l+ PreCalculate()\l+ Render()\l+ RenderDigital()\l+ storeValue()\l+ Poke()\l+ attachMemory()\l}" alt="" coords="342,336,494,545"/>
+<area shape="rect" id="node4" href="$interface_s_i_dious_1_1_i_mappable.html" title="{IMappable\&lt; byte \&gt;\n||+ attachMemory()\l}" alt="" coords="22,101,153,178"/>
+<area shape="rect" id="node10" href="$class_s_i_dious_1_1_stack.html" title="{SIDious.Stack\n|&#45; stackPointer\l|+ getStackPointer()\l+ setStackPointer()\l+ pushByte()\l+ pushWord()\l+ pushFlags()\l+ popByte()\l+ popWord()\l+ popFlags()\l+ Flush()\l+ attachMemory()\l}" alt="" coords="180,336,315,545"/>
+<area shape="rect" id="node5" href="$struct_s_i_dious_1_1_s_i_d_1_1_s_voice.html" title="{SIDious.SID.SVoice\n|+ Freq\l+ Pulse\l+ Control\l+ AtDec\l+ SusRel\l|}" alt="" coords="344,71,484,207"/>
+<area shape="rect" id="node6" href="$struct_s_i_dious_1_1_s_i_d_1_1_s_filter.html" title="{SIDious.SID.SFilter\n|+ FreqLo\l+ FreqHi\l+ ResFil\l+ ModeVol\l|}" alt="" coords="509,79,647,200"/>
+<area shape="rect" id="node7" href="$struct_s_i_dious_1_1_s_i_d_1_1_s_internal.html" title="{SIDious.SID.SInternal\n|+ Peroid\l+ Order\l+ Start\l+ End\l+ Add\l+ RepeatStart\l+ RepeatCount\l+ FreqMul\l|}" alt="" coords="671,49,823,229"/>
+<area shape="rect" id="node8" href="$class_s_i_dious_1_1_array_chunk.html" title="{SIDious.ArrayChunk\l\&lt; byte \&gt;\n|+ this[int key]\l&#45; array\l&#45; offset\l&#45; size\l|+ ArrayChunk()\l}" alt="" coords="177,71,320,207"/>
+<area shape="rect" id="node9" href="$struct_s_i_dious_1_1_s_i_d_1_1_s_oscilator.html" title="{SIDious.SID.SOscilator\n|+ Freq\l+ Pulse\l+ Control\l+ Filter\l+ Attack\l+ Decay\l+ Sustain\l+ Release\l+ Counter\l+ EnvValue\l+ EnvPhase\l+ NoisePos\l+ NoiseVal\l+ NoiseOutput\l|}" alt="" coords="848,5,1009,273"/>
+<area shape="rect" id="node11" href="$class_s_i_dious_1_1_memory.html" title="{SIDious.Memory\n|+ this[int key]\l&#45; memory\l|+ createMemoryChunk()\l+ readWord()\l+ readByte()\l+ readSByte()\l+ writeByte()\l+ Clear()\l}" alt="" coords="518,358,681,523"/>
+<area shape="rect" id="node12" href="$struct_s_i_dious_1_1_c_p_u_1_1_s_register.html" title="{SIDious.CPU.SRegister\n|+ PC\l+ A\l+ X\l+ Y\l|}" alt="" coords="943,380,1107,501"/>
+<area shape="rect" id="node13" href="$struct_s_i_dious_1_1_c_p_u_1_1_s_register_1_1_s_flags.html" title="{SIDious.CPU.SRegister.SFlags\n|+ N\l+ V\l+ B\l+ D\l+ I\l+ Z\l+ C\l|}" alt="" coords="1034,57,1242,222"/>
+</map>

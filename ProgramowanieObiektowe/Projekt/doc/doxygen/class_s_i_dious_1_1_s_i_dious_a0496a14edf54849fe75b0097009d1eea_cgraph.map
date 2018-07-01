@@ -1,0 +1,7 @@
+<map id="SIDious.SIDious.Main" name="SIDious.SIDious.Main">
+<area shape="rect" id="node2" href="$class_pulse_audio.html#a5411bbe7ebf1962c88ee70c60a1d7094" title="PulseAudio.pa_simple_new" alt="" coords="212,5,395,32"/>
+<area shape="rect" id="node3" href="$class_s_i_dious_1_1_c_p_u.html#a22e9018b10f82c940bdcd9847bb63f64" title="SIDious.CPU.jumpSubroutine" alt="" coords="205,56,401,83"/>
+<area shape="rect" id="node6" href="$class_pulse_audio.html#a2d295433213794b10326102953329f47" title="PulseAudio.pa_simple\l_destroy" alt="" coords="228,107,379,149"/>
+<area shape="rect" id="node4" href="$class_s_i_dious_1_1_c_p_u.html#ae4f4f40dbdad6a28d59ed262f733b6af" title="SIDious.CPU.Reset" alt="" coords="449,31,591,57"/>
+<area shape="rect" id="node5" href="$class_s_i_dious_1_1_c_p_u.html#a19b456da1a527bebf4b3c3d644d4949c" title="SIDious.CPU.Step" alt="" coords="453,81,587,108"/>
+</map>

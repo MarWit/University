@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SIDious: Dokumentacja klasy PulseAudio</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">SIDious
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano przez Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Szukaj');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Komponenty</a> &#124;
+<a href="#pub-methods">Metody publiczne</a> &#124;
+<a href="#pub-static-attribs">Statyczne atrybuty publiczne</a> &#124;
+<a href="class_pulse_audio-members.html">Lista wszystkich składowych</a>  </div>
+  <div class="headertitle">
+<div class="title">Dokumentacja klasy PulseAudio</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Diagram współpracy dla PulseAudio:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pulse_audio__coll__graph.png" border="0" usemap="#_pulse_audio_coll__map" alt="Collaboration graph"/></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Komponenty</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_pulse_audio_1_1pa__buffer__attr.html">pa_buffer_attr</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_pulse_audio_1_1pa__channel__map.html">pa_channel_map</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_pulse_audio_1_1pa__sample__spec.html">pa_sample_spec</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Metody publiczne</h2></td></tr>
+<tr class="memitem:a5411bbe7ebf1962c88ee70c60a1d7094"><td class="memItemLeft" align="right" valign="top">static IntPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pulse_audio.html#a5411bbe7ebf1962c88ee70c60a1d7094">pa_simple_new</a> (String server, String name, int dir, String dev, String stream_name, ref <a class="el" href="struct_pulse_audio_1_1pa__sample__spec.html">pa_sample_spec</a> ss, IntPtr map, IntPtr attr, IntPtr error)</td></tr>
+<tr class="separator:a5411bbe7ebf1962c88ee70c60a1d7094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5f3ff24d14acad730006a394043c423"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pulse_audio.html#ad5f3ff24d14acad730006a394043c423">pa_simple_write</a> (IntPtr s, short[] data, uint bytes, ref int error)</td></tr>
+<tr class="separator:ad5f3ff24d14acad730006a394043c423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d295433213794b10326102953329f47"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pulse_audio.html#a2d295433213794b10326102953329f47">pa_simple_destroy</a> (IntPtr s)</td></tr>
+<tr class="separator:a2d295433213794b10326102953329f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Statyczne atrybuty publiczne</h2></td></tr>
+<tr class="memitem:a6712bac238da51ccb79a89e7a80bddbf"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pulse_audio.html#a6712bac238da51ccb79a89e7a80bddbf">PA_STREAM_NODIRECTION</a> = 0</td></tr>
+<tr class="separator:a6712bac238da51ccb79a89e7a80bddbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a384af801c6a2fc5047262a627d07a9b8"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pulse_audio.html#a384af801c6a2fc5047262a627d07a9b8">PA_STREAM_PLAYBACK</a> = 1</td></tr>
+<tr class="separator:a384af801c6a2fc5047262a627d07a9b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71c65d9d0b10203bc1284bf2080f2324"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pulse_audio.html#a71c65d9d0b10203bc1284bf2080f2324">PA_STREAM_RECORD</a> = 2</td></tr>
+<tr class="separator:a71c65d9d0b10203bc1284bf2080f2324"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae746244478512214de01aa1eff5206a"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pulse_audio.html#aae746244478512214de01aa1eff5206a">PA_STREAM_UPLOAD</a> = 3</td></tr>
+<tr class="separator:aae746244478512214de01aa1eff5206a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Opis szczegółowy</h2>
+<div class="textblock"><p>Klasa-wrapper na funkcje <a class="el" href="class_pulse_audio.html">PulseAudio</a>. Klasa udostępniająca API do obsługi funkcji z libpulse-simple </p>
+</div><h2 class="groupheader">Dokumentacja funkcji składowych</h2>
+<a id="a2d295433213794b10326102953329f47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d295433213794b10326102953329f47">&#9670;&nbsp;</a></span>pa_simple_destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void PulseAudio.pa_simple_destroy </td>
+          <td>(</td>
+          <td class="paramtype">IntPtr&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Oto graf wywoływań tej funkcji:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pulse_audio_a2d295433213794b10326102953329f47_icgraph.png" border="0" usemap="#class_pulse_audio_a2d295433213794b10326102953329f47_icgraph" alt=""/></div>
+<map name="class_pulse_audio_a2d295433213794b10326102953329f47_icgraph" id="class_pulse_audio_a2d295433213794b10326102953329f47_icgraph">
+<area shape="rect" id="node2" href="class_s_i_dious_1_1_s_i_dious.html#a0496a14edf54849fe75b0097009d1eea" title="SIDious.SIDious.Main" alt="" coords="204,13,356,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5411bbe7ebf1962c88ee70c60a1d7094"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5411bbe7ebf1962c88ee70c60a1d7094">&#9670;&nbsp;</a></span>pa_simple_new()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IntPtr PulseAudio.pa_simple_new </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>stream_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref <a class="el" href="struct_pulse_audio_1_1pa__sample__spec.html">pa_sample_spec</a>&#160;</td>
+          <td class="paramname"><em>ss</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IntPtr&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IntPtr&#160;</td>
+          <td class="paramname"><em>attr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IntPtr&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Oto graf wywoływań tej funkcji:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pulse_audio_a5411bbe7ebf1962c88ee70c60a1d7094_icgraph.png" border="0" usemap="#class_pulse_audio_a5411bbe7ebf1962c88ee70c60a1d7094_icgraph" alt=""/></div>
+<map name="class_pulse_audio_a5411bbe7ebf1962c88ee70c60a1d7094_icgraph" id="class_pulse_audio_a5411bbe7ebf1962c88ee70c60a1d7094_icgraph">
+<area shape="rect" id="node2" href="class_s_i_dious_1_1_s_i_dious.html#a0496a14edf54849fe75b0097009d1eea" title="SIDious.SIDious.Main" alt="" coords="236,5,388,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad5f3ff24d14acad730006a394043c423"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5f3ff24d14acad730006a394043c423">&#9670;&nbsp;</a></span>pa_simple_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int PulseAudio.pa_simple_write </td>
+          <td>(</td>
+          <td class="paramtype">IntPtr&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">short []&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>bytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref int&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Oto graf wywoływań tej funkcji:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pulse_audio_ad5f3ff24d14acad730006a394043c423_icgraph.png" border="0" usemap="#class_pulse_audio_ad5f3ff24d14acad730006a394043c423_icgraph" alt=""/></div>
+<map name="class_pulse_audio_ad5f3ff24d14acad730006a394043c423_icgraph" id="class_pulse_audio_ad5f3ff24d14acad730006a394043c423_icgraph">
+<area shape="rect" id="node2" href="class_s_i_dious_1_1_s_i_dious.html#af6dd335f714bbc4541b3cd2a835cb719" title="SIDious.SIDious.Play" alt="" coords="204,13,355,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja atrybutów składowych</h2>
+<a id="a6712bac238da51ccb79a89e7a80bddbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6712bac238da51ccb79a89e7a80bddbf">&#9670;&nbsp;</a></span>PA_STREAM_NODIRECTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PulseAudio.PA_STREAM_NODIRECTION = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a384af801c6a2fc5047262a627d07a9b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a384af801c6a2fc5047262a627d07a9b8">&#9670;&nbsp;</a></span>PA_STREAM_PLAYBACK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PulseAudio.PA_STREAM_PLAYBACK = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a71c65d9d0b10203bc1284bf2080f2324"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71c65d9d0b10203bc1284bf2080f2324">&#9670;&nbsp;</a></span>PA_STREAM_RECORD</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PulseAudio.PA_STREAM_RECORD = 2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aae746244478512214de01aa1eff5206a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae746244478512214de01aa1eff5206a">&#9670;&nbsp;</a></span>PA_STREAM_UPLOAD</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PulseAudio.PA_STREAM_UPLOAD = 3</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>Dokumentacja dla tej klasy została wygenerowana z pliku:<ul>
+<li><a class="el" href="_pulse_audio_8cs.html">PulseAudio.cs</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Wygenerowano przez &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

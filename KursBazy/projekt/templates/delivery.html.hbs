@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="{{url}}/static/css/materialize.min.css"  media="screen,projection"/>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>{{title}}</title>
+    </head>
+
+    <body>
+        <nav>
+{{~> navbar}}
+        </nav>
+        <div class="container">
+            <div class="col s8">
+                <div class="row center-align" />
+                    <h4>{{data.id}}</h4>
+                </div>
+
+                <table class="stripped">
+                    <thead>
+                        <tr>
+                            <th>Prop. name</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each data as |key value|}}
+                            <tr>
+                                <th>{{key}}</th>
+                                <th>{{value}}</th>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+
+                <div class="row center-align">
+                    <a onclick="history.back();" class="waves-effect waves-light btn-floating">
+                        <i class="material-icons">arrow_back</i>
+                    </a>
+                    <a class="waves-effect waves-light btn-floating red modal-trigger" href="#delete">
+                        <i class="material-icons">delete</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="delete" class="modal">
+            <div class="modal-content">
+                Are you sure about that?
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Nope</a>
+                <a href="{{url}}/delivery/{{data.id}}/delete" class="waves-effect waves-light btn red">Let's do it!</a>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="{{url}}/static/js/materialize.min.js"></script>
+        <script type="text/javascript">
+            M.AutoInit();
+        </script>
+    </body>
+</html>

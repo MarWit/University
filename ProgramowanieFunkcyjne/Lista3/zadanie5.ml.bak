@@ -1,0 +1,28 @@
+let find_i a =
+    let rec aux a aa acc =
+        match a, aa with
+            | (hd :: tl, hd2 :: tl2) ->
+                    if hd < hd2 then aux tl tl2 (hd::acc)
+                    else aux tl tl2 acc
+            | (_, []) -> if acc <> [] then [List.hd acc] else []
+            | (_, _) -> failwith "Invalid permutation."
+    in aux a (List.tl a) []
+
+let find_l a i = List.find ((<) i) (List.rev a)
+let swap l a b = List.map (fun s -> if s = a then b else if s = b then a else s) l
+let rev_after a i =
+    let rec aux a i acc =
+        match a with
+            | hd :: tl -> if hd = i then acc@[i]@(List.rev tl)
+                          else aux tl i (acc@[hd])
+            | [] -> acc
+    in aux a i []
+
+let next_permutation a =
+    let i = find_i a in
+    if i <> [] then
+        let i = List.hd i in
+        let l = find_l a i in
+        let a = swap a i l in
+        rev_after a l
+    else []

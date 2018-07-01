@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="{{url}}/static/css/materialize.min.css"  media="screen,projection"/>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>{{title}}</title>
+    </head>
+
+    <body>
+        <nav></nav>
+        <div class="container">
+            <form action="/login/auth" method="post">
+                <div class="row center-align">
+                    <i class="material-icons" style="font-size: 10rem;">person_pin_circle</i>
+                </div>
+                <div class="row">
+                    <div class="input-field col offset-s4 s4">
+                        <input id="login" type="text" />
+                        <label for="login">Login</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col offset-s4 s4">
+                        <input id="password" type="password" />
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <input value="Login" type="submit" class="waves-effect waves-light btn-large" />
+                </div>
+            </div>
+        </form>
+
+        <script type="text/javascript" src="{{url}}/static/js/materialize.min.js"></script>
+    </body>
+</html>

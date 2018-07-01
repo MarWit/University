@@ -1,0 +1,10 @@
+[package]
+name = "nono_guesser"
+version = "0.1.0"
+authors = ["marwit"]
+
+[profile.release]
+debug = true
+
+[dependencies]
+rpds = "*"

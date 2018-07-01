@@ -1,0 +1,45 @@
+scene 800 600
+camera 2 8 4 2 0 4 105
+background 0 0 0
+
+matphong red 1 0 0 0.8 1 300
+matphong green 0 1 0 0.8 1 300
+matphong blue 0 0 1 0.8 1 300
+matreflec redrefr 1 0 0 0.6 1 300 0.4
+matreflec bluerefr 0 0 1 0.6 1 300 0.4
+matphong grey 0.75 0.75 0.75 1 0 0
+
+sphere -4 0 0 2 red
+sphere 0 0 0 2 green
+sphere 4 0 0 2 blue
+sphere 8 0 0 2 red
+
+sphere -4 0 4 2 green
+sphere 0 0 4 2 bluerefr
+sphere 4 0 4 2 redrefr
+sphere 8 0 4 2 green
+
+sphere -4 0 8 2 blue
+sphere 0 0 8 2 red
+sphere 4 0 8 2 green
+sphere 8 0 8 2 blue
+
+sphere -4 -4 0 2 green
+sphere 0 -4 0 2 blue
+sphere 4 -4 0 2 red
+sphere 8 -4 0 2 green
+
+sphere -4 -4 4 2 red
+sphere 0 -4 4 2 green
+sphere 4 -4 4 2 blue
+sphere 8 -4 4 2 red
+
+sphere -4 -8 0 2 blue
+sphere 0 -8 0 2 red
+sphere 4 -8 0 2 green
+sphere 8 -8 0 2 blue
+
+plane 0 0 -2 0 0 1 grey
+
+light 0 5 10 0.96 0.96 0.96 -1
+light 2 -8 4 0.8 0.8 0.8 -1

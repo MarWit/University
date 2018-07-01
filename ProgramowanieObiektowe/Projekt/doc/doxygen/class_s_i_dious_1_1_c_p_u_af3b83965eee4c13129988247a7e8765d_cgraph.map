@@ -1,0 +1,7 @@
+<map id="SIDious.CPU.handlerSTX" name="SIDious.CPU.handlerSTX">
+<area shape="rect" id="node2" href="$class_s_i_dious_1_1_c_p_u.html#a6f7b466ca79c8830d7a2ca61fba4b246" title="SIDious.CPU.storeValue" alt="" coords="228,31,395,57"/>
+<area shape="rect" id="node3" href="$class_s_i_dious_1_1_c_p_u.html#af1ec8f722a632487276b536298ac13d7" title="SIDious.CPU.readWordOperand" alt="" coords="443,5,653,32"/>
+<area shape="rect" id="node5" href="$class_s_i_dious_1_1_c_p_u.html#aaa8ef8c82ceef6027018eb83ec71f4df" title="SIDious.CPU.readByteOperand" alt="" coords="445,56,651,83"/>
+<area shape="rect" id="node4" href="$class_s_i_dious_1_1_memory.html#a0d67be211175a000655082f08e6e5af6" title="SIDious.Memory.readWord" alt="" coords="701,5,880,32"/>
+<area shape="rect" id="node6" href="$class_s_i_dious_1_1_memory.html#a8066523555e540c2a79ea0c169c0c816" title="SIDious.Memory.readByte" alt="" coords="703,56,878,83"/>
+</map>

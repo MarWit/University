@@ -1,0 +1,8 @@
+<map id="SIDious.SID" name="SIDious.SID">
+<area shape="rect" id="node2" href="$interface_s_i_dious_1_1_i_mappable.html" title="{IMappable\&lt; byte \&gt;\n||+ attachMemory()\l}" alt="" coords="5,101,136,178"/>
+<area shape="rect" id="node3" href="$struct_s_i_dious_1_1_s_i_d_1_1_s_voice.html" title="{SIDious.SID.SVoice\n|+ Freq\l+ Pulse\l+ Control\l+ AtDec\l+ SusRel\l|}" alt="" coords="161,71,301,207"/>
+<area shape="rect" id="node4" href="$struct_s_i_dious_1_1_s_i_d_1_1_s_filter.html" title="{SIDious.SID.SFilter\n|+ FreqLo\l+ FreqHi\l+ ResFil\l+ ModeVol\l|}" alt="" coords="325,79,464,200"/>
+<area shape="rect" id="node5" href="$struct_s_i_dious_1_1_s_i_d_1_1_s_internal.html" title="{SIDious.SID.SInternal\n|+ Peroid\l+ Order\l+ Start\l+ End\l+ Add\l+ RepeatStart\l+ RepeatCount\l+ FreqMul\l|}" alt="" coords="488,49,640,229"/>
+<area shape="rect" id="node6" href="$class_s_i_dious_1_1_array_chunk.html" title="{SIDious.ArrayChunk\l\&lt; byte \&gt;\n|+ this[int key]\l&#45; array\l&#45; offset\l&#45; size\l|+ ArrayChunk()\l}" alt="" coords="665,71,807,207"/>
+<area shape="rect" id="node7" href="$struct_s_i_dious_1_1_s_i_d_1_1_s_oscilator.html" title="{SIDious.SID.SOscilator\n|+ Freq\l+ Pulse\l+ Control\l+ Filter\l+ Attack\l+ Decay\l+ Sustain\l+ Release\l+ Counter\l+ EnvValue\l+ EnvPhase\l+ NoisePos\l+ NoiseVal\l+ NoiseOutput\l|}" alt="" coords="831,5,993,273"/>
+</map>

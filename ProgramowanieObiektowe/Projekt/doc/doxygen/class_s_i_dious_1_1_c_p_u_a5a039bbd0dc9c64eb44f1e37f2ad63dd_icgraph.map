@@ -1,0 +1,32 @@
+<map id="SIDious.CPU.updateFlags" name="SIDious.CPU.updateFlags">
+<area shape="rect" id="node2" href="$class_s_i_dious_1_1_c_p_u.html#ae8a3a91056db0a469a4efea4bd37879c" title="SIDious.CPU.updateFlags" alt="" coords="231,5,409,32"/>
+<area shape="rect" id="node3" href="$class_s_i_dious_1_1_c_p_u.html#a4f220c744bc99c21d1c2772e7920c14b" title="SIDious.CPU.handlerADC" alt="" coords="231,56,409,83"/>
+<area shape="rect" id="node4" href="$class_s_i_dious_1_1_c_p_u.html#a6afabecd6d219088bb567ac8c179b401" title="SIDious.CPU.handlerAND" alt="" coords="231,107,409,133"/>
+<area shape="rect" id="node5" href="$class_s_i_dious_1_1_c_p_u.html#acd91b7010fa2c0732cb63a9b9bc4cfe1" title="SIDious.CPU.handlerASL" alt="" coords="233,157,407,184"/>
+<area shape="rect" id="node6" href="$class_s_i_dious_1_1_c_p_u.html#aa41847e14143c0532ffd0737288823e3" title="SIDious.CPU.handlerBIT" alt="" coords="235,208,405,235"/>
+<area shape="rect" id="node7" href="$class_s_i_dious_1_1_c_p_u.html#a7fc23716b0f4e457f34a98d5b9075680" title="SIDious.CPU.handlerCMP" alt="" coords="231,259,409,285"/>
+<area shape="rect" id="node8" href="$class_s_i_dious_1_1_c_p_u.html#a00209f2f0559fe9617b384e24eefbdf7" title="SIDious.CPU.handlerCPX" alt="" coords="233,309,407,336"/>
+<area shape="rect" id="node9" href="$class_s_i_dious_1_1_c_p_u.html#a9fe7b3df04c415cc90ed61bad91229dd" title="SIDious.CPU.handlerCPY" alt="" coords="232,360,408,387"/>
+<area shape="rect" id="node10" href="$class_s_i_dious_1_1_c_p_u.html#a7373f957815f93f44bc19c47267676aa" title="SIDious.CPU.handlerDCP" alt="" coords="231,411,409,437"/>
+<area shape="rect" id="node11" href="$class_s_i_dious_1_1_c_p_u.html#a306b4d7457ceecf0517b88fae5a38ee0" title="SIDious.CPU.handlerDEC" alt="" coords="231,461,409,488"/>
+<area shape="rect" id="node12" href="$class_s_i_dious_1_1_c_p_u.html#ab1abee8e12a16efab80dee6af47e84c8" title="SIDious.CPU.handlerDEX" alt="" coords="232,512,408,539"/>
+<area shape="rect" id="node13" href="$class_s_i_dious_1_1_c_p_u.html#a192349aea3e5e4d711c8d99e77ea9084" title="SIDious.CPU.handlerDEY" alt="" coords="232,563,408,589"/>
+<area shape="rect" id="node14" href="$class_s_i_dious_1_1_c_p_u.html#a4804b7aa771b0133749b68749636e3d3" title="SIDious.CPU.handlerEOR" alt="" coords="231,613,409,640"/>
+<area shape="rect" id="node15" href="$class_s_i_dious_1_1_c_p_u.html#a8bd354dc0fc23181774baac18a8bcc10" title="SIDious.CPU.handlerINC" alt="" coords="234,664,406,691"/>
+<area shape="rect" id="node16" href="$class_s_i_dious_1_1_c_p_u.html#ad452dc11baa2e441ee1323950ae667a8" title="SIDious.CPU.handlerINX" alt="" coords="235,715,405,741"/>
+<area shape="rect" id="node17" href="$class_s_i_dious_1_1_c_p_u.html#a17047dd5370b0f7de99cf4f60c36df42" title="SIDious.CPU.handlerINY" alt="" coords="235,765,405,792"/>
+<area shape="rect" id="node18" href="$class_s_i_dious_1_1_c_p_u.html#a782f6cbc7fa0f138e71e3cfb0334c42c" title="SIDious.CPU.handlerLAX" alt="" coords="233,816,407,843"/>
+<area shape="rect" id="node19" href="$class_s_i_dious_1_1_c_p_u.html#ae5c854e04dbf5d0741c782c1820e815e" title="SIDious.CPU.handlerLDA" alt="" coords="233,867,407,893"/>
+<area shape="rect" id="node20" href="$class_s_i_dious_1_1_c_p_u.html#a1c9587a8edf14386c5b70c924e225a42" title="SIDious.CPU.handlerLDX" alt="" coords="233,917,407,944"/>
+<area shape="rect" id="node21" href="$class_s_i_dious_1_1_c_p_u.html#a254a70b25167b04aabc71cf689866e75" title="SIDious.CPU.handlerLDY" alt="" coords="233,968,407,995"/>
+<area shape="rect" id="node22" href="$class_s_i_dious_1_1_c_p_u.html#a55523efc070d9be0fc35ed84286bd491" title="SIDious.CPU.handlerLSR" alt="" coords="233,1019,407,1045"/>
+<area shape="rect" id="node23" href="$class_s_i_dious_1_1_c_p_u.html#a069552a7ffc0937ea48f6e987aef1570" title="SIDious.CPU.handlerORA" alt="" coords="231,1069,409,1096"/>
+<area shape="rect" id="node24" href="$class_s_i_dious_1_1_c_p_u.html#ae947fb59da9a540d5ca3708679aa0400" title="SIDious.CPU.handlerPLA" alt="" coords="233,1120,407,1147"/>
+<area shape="rect" id="node25" href="$class_s_i_dious_1_1_c_p_u.html#afdd132ee7fcea524f8fd0bf1b01a3e5c" title="SIDious.CPU.handlerROL" alt="" coords="233,1171,407,1197"/>
+<area shape="rect" id="node26" href="$class_s_i_dious_1_1_c_p_u.html#aed6cd3b0de4f5a4d6b79b0a9b7f4dcf2" title="SIDious.CPU.handlerROR" alt="" coords="231,1221,409,1248"/>
+<area shape="rect" id="node27" href="$class_s_i_dious_1_1_c_p_u.html#aa018782dc175bd713c9b32c25159597f" title="SIDious.CPU.handlerSBC" alt="" coords="232,1272,408,1299"/>
+<area shape="rect" id="node28" href="$class_s_i_dious_1_1_c_p_u.html#acaf8a5d582f71b9073271e8c10e8d950" title="SIDious.CPU.handlerTAX" alt="" coords="233,1323,407,1349"/>
+<area shape="rect" id="node29" href="$class_s_i_dious_1_1_c_p_u.html#a6da5184519cc73d294a11c7f12f57928" title="SIDious.CPU.handlerTAY" alt="" coords="234,1373,406,1400"/>
+<area shape="rect" id="node30" href="$class_s_i_dious_1_1_c_p_u.html#aa9d2d077785317c808f0fdf3b634fff4" title="SIDious.CPU.handlerTXA" alt="" coords="233,1424,407,1451"/>
+<area shape="rect" id="node31" href="$class_s_i_dious_1_1_c_p_u.html#a8c7fe31e3f2a07b442c5a713faf3c9ef" title="SIDious.CPU.handlerTYA" alt="" coords="233,1475,407,1501"/>
+</map>

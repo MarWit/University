@@ -1,0 +1,35 @@
+use chrono::NaiveDate;
+use std::collections::BTreeSet;
+use schema::*;
+
+// <Cargo>
+// </Cargo>
+
+// <Shop>
+// </Shop>
+
+// <Delivery>
+// </Delivery>
+
+// <DeliveryFeature>
+// </DeliveryFeature>
+
+#[derive(Clone)]
+pub struct Hub {
+    pub code: String,
+    pub name: String
+}
+
+#[derive(Clone, Queryable, Debug)]
+pub struct Recipient {
+    pub full_name:  String,
+    pub location:   Location
+}
+
+#[derive(Clone, Queryable, Debug)]
+pub struct Location {
+    pub city:     String,
+    pub zipcode:  String,
+    pub address1: String,
+    pub address2: Option<String>
+}

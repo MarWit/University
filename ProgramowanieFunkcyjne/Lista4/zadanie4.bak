@@ -1,0 +1,61 @@
+type 'a mtree = MNode of 'a * 'a forest
+ and 'a forest = EmptyForest | Forest of 'a mtree * 'a forest
+
+type 'a mtree_lst = MTree of 'a * ('a mtree_lst) list
+
+let rec prod (MNode (v, f)) =
+    let rec aux forest =
+        match forest with
+            | EmptyForest -> 1
+            | Forest (t, f) -> prod t * aux f
+    in v * aux f
+
+let rec prod_lst (MTree (v, tl)) =
+    v * List.fold_left ( * ) 1 (List.map prod_lst tl)
+
+let prod_c (MNode (v, f)) func =
+    let rec aux forest func =
+        match forest with
+            | EmptyForest -> func
+            | Forest (MNode(0, _), _) -> (fun v -> 0)
+            | Forest (MNode(t, f), ff) -> (fun v -> t * (aux f ( aux ff func ) v) )
+    in v * aux f func 1
+
+let prod_lst_c (MTree (v, l)) func =
+    let rec aux l func =
+        match l with
+            | [] -> func
+            | MTree(t, f) :: ff -> (fun v -> t * (aux f ( aux ff func ) v) )
+    in v * aux l func 1
+
+let tests () =
+    let t1 =
+        MTree(2, [
+            MTree(3, [
+                MTree(5, [])
+            ]);
+            MTree(4, [
+                MTree(6, [])
+            ])
+        ])
+    in
+    let t2 =
+        MNode(2, Forest(
+            MNode(3, Forest(
+                MNode(5, EmptyForest),
+                EmptyForest
+            )), Forest(
+            MNode(4, Forest(
+                MNode(6, EmptyForest),
+                EmptyForest
+            )), EmptyForest))
+        )
+    in
+    let check a b t =
+        if t then a = b else t
+    in
+        true
+    |> check (prod t2) 720
+    |> check (prod_c t2 (fun v -> v)) 720
+    |> check (prod_lst t1) 720
+    |> check (prod_lst_c t1 (fun v -> v)) 720

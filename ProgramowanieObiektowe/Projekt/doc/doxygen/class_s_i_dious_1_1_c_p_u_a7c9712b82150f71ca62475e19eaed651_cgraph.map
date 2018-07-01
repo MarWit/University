@@ -1,0 +1,4 @@
+<map id="SIDious.CPU.handlerJMP" name="SIDious.CPU.handlerJMP">
+<area shape="rect" id="node2" href="$class_s_i_dious_1_1_c_p_u.html#af1ec8f722a632487276b536298ac13d7" title="SIDious.CPU.readWordOperand" alt="" coords="228,5,439,32"/>
+<area shape="rect" id="node3" href="$class_s_i_dious_1_1_memory.html#a0d67be211175a000655082f08e6e5af6" title="SIDious.Memory.readWord" alt="" coords="487,5,665,32"/>
+</map>

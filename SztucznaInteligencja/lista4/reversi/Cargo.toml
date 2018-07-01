@@ -1,0 +1,16 @@
+[package]
+name = "reversi"
+version = "0.1.0"
+authors = ["MarWit"]
+
+[dependencies]
+piston_window = "*"
+rand = "*"
+rayon = "*"
+indextree = "*"
+rusty-machine = "*"
+rlua = { version = "*", optional = true }
+
+[features]
+default = []
+lua = [ "rlua" ]

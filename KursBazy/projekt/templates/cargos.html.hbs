@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="{{url}}/static/css/materialize.min.css"  media="screen,projection"/>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>{{title}}</title>
+    </head>
+
+    <body>
+        <nav>
+{{~> navbar}}
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="input-field col offset-s4 s4">
+                    <i class="material-icons prefix">search</i>
+                    <input id="search" type="text">
+                    <label for="search">Search</label>
+                </div>
+            </div>
+
+            {{#each data}}
+            <div class="collection">
+                <a href="{{url}}/cargo/{{id}}" class="collection-item">Cargo #{{id}}</a>
+            </div>
+            {{/each}}
+
+            <ul class="pagination center-align">
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                <li class="active"><a href="#!">1</a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+        </div>
+
+        <script type="text/javascript" src="{{url}}/static/js/materialize.min.js"></script>
+    </body>
+</html>

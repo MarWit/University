@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SIDious: Legenda wykresu</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">SIDious
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano przez Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Szukaj');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Szukaj');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Legenda wykresu</div>  </div>
+</div><!--header-->
+<div class="contents">
+<p>Ta strona wyjaśnia jak interpretować wykresy, które są wygenerowane przez doxygen.</p>
+<p>Rozważ następujący przykład: </p><div class="fragment"><div class="line">/*! Klasa Niewidzialna z powodu okrojenia */</div><div class="line">class Niewidzialna { };</div><div class="line"></div><div class="line">/*! Klasa Okrojona, relacja dziedziczenia jest ukryta */</div><div class="line">class Okrojona : public Niewidzialna { };</div><div class="line"></div><div class="line">/* Klasa nie udokumentowana komentarzami doxygen */</div><div class="line">class Nieudokumentowana { };</div><div class="line"></div><div class="line">/*! Klasa, która jest dziedziczona publicznie */</div><div class="line">class PublicznaBaza : public Okrojona { };</div><div class="line"></div><div class="line">/*! Szablon klasy */</div><div class="line">template&lt;class T&gt; class Templ { };</div><div class="line"></div><div class="line">/*! Klasa, która jest dziedziczona przy użyciu dziedziczenia chronionego */</div><div class="line">class ChronionaBaza { };</div><div class="line"></div><div class="line">/*! Klasa, która jest dziedziczona prywatnie */</div><div class="line">class PrywatnaBaza { };</div><div class="line"></div><div class="line">/*! Klasa, która jest użyta przez klasę Dziedziczona */</div><div class="line">class Uzyta { };</div><div class="line"></div><div class="line">/*! Superklasa, która dziedziczy kilka innych klas */</div><div class="line">class Dziedziczona : public PublicznaBaza,</div><div class="line">                     protected ChronionaBaza,</div><div class="line">                     private PrywatnaBaza,</div><div class="line">                     public Nieudokumentowana,</div><div class="line">                     public Templ&lt;int&gt;</div><div class="line">{</div><div class="line">  private:</div><div class="line">    Uzyta *m_usedClass;</div><div class="line">};</div></div><!-- fragment --><p> Rezultat na następującym wykresie:</p>
+<center><div class="image">
+<img src="graph_legend.png"/>
+</div>
+</center><p>Prostokąty w powyższym wykresie mają następujące znaczenie: </p>
+<ul>
+<li>
+Wypełniony czarny prostokąt reprezentuje strukturę lub klasę dla której został wygenerowany wykres. </li>
+<li>
+Prostokąt z czarną obwolutą oznacza udokumentowaną strukturę lub klasę. </li>
+<li>
+Prostokąt z szarą obwolutą oznacza nieudokumentowaną strukturę lub klasę. </li>
+<li>
+Prostokąt z czerwoną obwolutą oznacza udokumentowaną strukturę lub klasę dla której nie są pokazane wszystkie relacje dziedziczenia/zawierania. Wykres jest okrojony, jeśli nie mieści się w określonych brzegach. </li>
+</ul>
+<p>Strzałki mają następujące znaczenie: </p>
+<ul>
+<li>
+Ciemno niebieska strzałka jest używana do wizualizacji relacji dziedziczenia publicznego pomiędzy dwiema klasami. </li>
+<li>
+Ciemno zielona strzałka jest używana dla dziedziczenia chronionego. </li>
+<li>
+Ciemno czerwona strzałka jest używana dla dziedziczenia prywatnego. </li>
+<li>
+Fioletowa przerywana strzałka jest używana jeśli klasa jest zawarta lub użyta przez inną klasę. Strzałka jest podpisana zmienną(ymi) przez które wskazywana klasa lub struktura jest dostępna.  </li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Wygenerowano przez &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

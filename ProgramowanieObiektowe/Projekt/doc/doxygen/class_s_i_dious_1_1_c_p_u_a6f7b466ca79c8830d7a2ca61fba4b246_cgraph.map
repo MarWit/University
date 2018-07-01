@@ -1,0 +1,6 @@
+<map id="SIDious.CPU.storeValue" name="SIDious.CPU.storeValue">
+<area shape="rect" id="node2" href="$class_s_i_dious_1_1_c_p_u.html#af1ec8f722a632487276b536298ac13d7" title="SIDious.CPU.readWordOperand" alt="" coords="220,5,431,32"/>
+<area shape="rect" id="node4" href="$class_s_i_dious_1_1_c_p_u.html#aaa8ef8c82ceef6027018eb83ec71f4df" title="SIDious.CPU.readByteOperand" alt="" coords="222,56,429,83"/>
+<area shape="rect" id="node3" href="$class_s_i_dious_1_1_memory.html#a0d67be211175a000655082f08e6e5af6" title="SIDious.Memory.readWord" alt="" coords="479,5,657,32"/>
+<area shape="rect" id="node5" href="$class_s_i_dious_1_1_memory.html#a8066523555e540c2a79ea0c169c0c816" title="SIDious.Memory.readByte" alt="" coords="481,56,655,83"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="SIDious.CPU.handlerBVC" name="SIDious.CPU.handlerBVC">
+<area shape="rect" id="node2" href="$class_s_i_dious_1_1_c_p_u.html#a76bef463907d15c39b62f95d29e63083" title="SIDious.CPU.readSByteOperand" alt="" coords="228,5,444,32"/>
+<area shape="rect" id="node3" href="$class_s_i_dious_1_1_memory.html#a1c9b108635a1aa23241ece95fed6263a" title="SIDious.Memory.readSByte" alt="" coords="492,5,676,32"/>
+</map>

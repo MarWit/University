@@ -1,0 +1,4 @@
+<map id="SIDious.Stack" name="SIDious.Stack">
+<area shape="rect" id="node2" href="$interface_s_i_dious_1_1_i_mappable.html" title="{IMappable\&lt; byte \&gt;\n||+ attachMemory()\l}" alt="" coords="5,35,136,112"/>
+<area shape="rect" id="node3" href="$class_s_i_dious_1_1_array_chunk.html" title="{SIDious.ArrayChunk\l\&lt; byte \&gt;\n|+ this[int key]\l&#45; array\l&#45; offset\l&#45; size\l|+ ArrayChunk()\l}" alt="" coords="161,5,303,141"/>
+</map>
