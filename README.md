@@ -1,6 +1,6 @@
 # Unversity
 
-Repository for storing my solutions to programming problems from various courses in university.
+Repository for storing my solutions to programming problems from various courses at university.
 
 ## Featured projects
 
