@@ -4,7 +4,7 @@ Repository for storing my solutions to programming problems from various courses
 
 ## Featured projects
 
-* [Haskell] [Ray tracer](https://github.com/MarWit/University/tree/master/FunctionalProgramming/Project) written as end-of-course project for the subject of _Functional programming_,
+* [Haskell] [Ray tracer](https://github.com/MarWit/University/tree/master/FunctionalProgramming/project) written as end-of-course project for the subject of _Functional programming_,
 * [Rust] [Project for _Database's Application_ course](https://github.com/MarWit/University/tree/master/DatabaseApplications/project) - simple database application written with DDD in mind,
 * [Rust] [Real-time chord recogniser](https://github.com/MarWit/University/tree/master/ArtificialIntelligence/project) written as project for
 _Artificial Intelligence_ subject,
