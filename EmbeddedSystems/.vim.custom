@@ -1,0 +1,5 @@
+set path=.,/usr/avr/include,
+
+let g:ale_c_gcc_executable='avr-gcc'
+let g:ale_c_gcc_options='-Wall -mmcu=atmega328p -O3'
+let g:ale_linters['c'] = ['gcc']

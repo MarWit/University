@@ -1,0 +1,16 @@
+target/
+Cargo.lock
+**/*.bk
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.o
+
+.cabal-sandbox/
+cabal.sandbox.config
+
+*.hex
+*.map
+*.lst
+*.elf
