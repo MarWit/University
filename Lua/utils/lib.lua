@@ -12,13 +12,21 @@ function utils.tuple_iter(tuples)
 end
 
 -- NOTE: Only works for shallow tables
-function utils.array_eq(a, b)
+function utils.array_eq(a, b, deepcmp)
     if #a ~= #b then
         return false
     end
 
     for i=1,#a do
-        if a[i] ~= b[i] then
+        if type(a[i]) ~= type(b[i]) then
+            return false
+        end
+
+        if deepcmp and type(a[i]) == 'table' then
+            if #a[i] ~= #b[i] or not utils.array_eq(a[i], b[i], true) then
+                return false
+            end
+        elseif a[i] ~= b[i] then
             return false
         end
     end
@@ -64,7 +72,7 @@ function utils.from_iter(iterable, is_table)
     return output
 end
 
-function utils.run_tests(tests, func)
+function utils.run_tests(tests, func, deepcmp)
     local function helper(good_output, ...)
         return good_output, func(...)
     end
@@ -82,7 +90,7 @@ function utils.run_tests(tests, func)
 
         if type(output) == 'table' then
             -- XXX: Change it later to table_eq
-            result = utils.array_eq(output, good_output)
+            result = utils.array_eq(output, good_output, deepcmp)
         else
             result = (output == good_output)
         end
