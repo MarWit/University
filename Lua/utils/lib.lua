@@ -58,17 +58,11 @@ function utils.prettify(input)
     return table.concat(output)
 end
 
-function utils.from_iter(iterable, is_table)
+function utils.from_iter(...)
     local output = {}
 
-    if is_table then
-        for k, v in iterable do
-            output[k] = v
-        end
-    else
-        for v in iterable do
-            table.insert(output, v)
-        end
+    for v in ... do
+        table.insert(output, v)
     end
 
     return output
