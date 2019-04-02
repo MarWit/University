@@ -1,5 +1,5 @@
 package.path = '../?.lua;'..package.path
-require 'utils.lib'
+utils = require 'utils.lib'
 
 function string.split(str, delim)
     local delim = delim or ' '

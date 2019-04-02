@@ -1,4 +1,4 @@
-utils = {}
+local utils = {}
 
 function utils.tuple_iter(tuples)
     local i = 0
@@ -43,17 +43,19 @@ function utils.prettify(input)
         return tostring(input)
     end
 
-    local output = '{'
+    local output = { '{' }
 
     for i=1,#input do
-        output = output..utils.prettify(input[i])
+        output[#output + 1] = utils.prettify(input[i])
 
         if i ~= #input then
-            output = output..', '
+            output[#output + 1] = ', '
         end
     end
 
-    return output..'}'
+    output[#output + 1] = '}'
+
+    return table.concat(output)
 end
 
 function utils.from_iter(iterable, is_table)
@@ -107,3 +109,5 @@ function utils.run_tests(tests, func, deepcmp)
     io.write(('%d/%d (%.2f%%) tests passed.\n'):format(passed, len, 100. * passed/len))
     io.flush()
 end
+
+return utils

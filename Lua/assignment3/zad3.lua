@@ -1,5 +1,5 @@
 package.path = '../?.lua;'..package.path
-require 'utils.lib'
+utils = require 'utils.lib'
 
 function utf8.sub(str, i, j)
     iter = 1
