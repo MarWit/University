@@ -1,0 +1,8 @@
+orders.xml: http://aiweb.cs.washington.edu/research/projects/xmltk/xmldata/www/repository.html#mondial
+lorem_ipsum: lorem-ipsum-generator -p 10000
+dna_sequences: https://www.bioinformatics.org/sms2/random_dna.html
+mario.mid: https://bitmidi.com/mario-bros-super-mario-bros-theme-mid
+bible: https://raw.githubusercontent.com/mxw/grmr/master/src/finaltests/bible.txt
+zeros: dd if=/dev/zero bs=1MB count=1 of=zeros
+random: dd if=/dev/urandom bs=1MB count=1 of=zeros
+mod.rs: src/sequitur/mod.rs (source file)

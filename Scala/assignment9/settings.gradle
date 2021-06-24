@@ -1,0 +1,4 @@
+rootProject.name = 'assignment9'
+
+include 'src:core'
+include 'src:blackjack'

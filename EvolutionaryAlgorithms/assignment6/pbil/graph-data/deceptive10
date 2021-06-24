@@ -1,0 +1,14 @@
+set terminal png
+set output 'deceptive10.png'
+
+
+set xlabel "iters"
+set ylabel "fitness"
+set autoscale
+
+set grid
+set style data lines
+
+plot "deceptive10_pbil" using 1:2 title "PBIL", \
+     "deceptive10_umda" using 1:2 title "UMDA", \
+     "deceptive10_cga" using 1:2 title "CGA"

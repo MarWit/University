@@ -1,0 +1,373 @@
+use std::f32::consts::PI;
+
+use image::{Rgba, RgbaImage};
+use imageproc::drawing::{self, Blend, Canvas};
+use rand::prelude::*;
+use rand_distr::Uniform;
+
+type Scalar = f32;
+type Point = imageproc::point::Point<i32>;
+
+#[derive(Clone, Copy)]
+struct Transformation {
+    pub angle: Scalar,
+    pub displacement: (i32, i32),
+    sincos: (Scalar, Scalar),
+}
+
+struct MutationConfig;
+impl MutationConfig {
+    const FIGURE_ADD: Scalar = 0.1;
+    const FIGURE_COLOR_ALPHA: Scalar = 0.00;
+    const FIGURE_COLOR_BLUE: Scalar = 0.05;
+    const FIGURE_COLOR_GREEN: Scalar = 0.05;
+    const FIGURE_COLOR_RED: Scalar = 0.05;
+    const FIGURE_MODIFY: Scalar = 0.50;
+    const FIGURE_MODIFY_POINTS: Scalar = 0.25;
+    const FIGURE_MODIFY_SIZE: Scalar = 0.25;
+    const FIGURE_MUTATE: Scalar = 0.03;
+    const FIGURE_POLYGON_MAX_POINTS: usize = 20;
+    const FIGURE_REMOVE: Scalar = 0.1;
+    const FIGURE_REORDER: Scalar = 0.02;
+    const FIGURE_TRANSFORM_ANGLE: Scalar = 0.25;
+    const FIGURE_TRANSFORM_DISPLACEMENT: Scalar = 0.25;
+    const MAX_FIGURES: usize = 500;
+}
+
+#[derive(Clone)]
+enum Object {
+    Triangle { w: i32, h: i32 },
+    Square { w: i32 },
+    Polygon { center: Point, points: Vec<Point> },
+    Circle { center: Point, radius: i32 },
+}
+
+impl Transformation {
+    fn new(angle: f32, displacement: (i32, i32)) -> Self {
+        Self {
+            angle,
+            sincos: angle.sin_cos(),
+            displacement,
+        }
+    }
+
+    fn set_angle(&mut self, angle: Scalar) {
+        self.angle = angle;
+        self.sincos = self.angle.sin_cos();
+    }
+
+    fn transform(&self, point: Point) -> Point {
+        let (px, py) = (point.x as Scalar, point.y as Scalar);
+        let (s, c) = self.sincos;
+
+        Point::new(
+            (px * c - py * s) as i32 + self.displacement.0,
+            (px * s + py * c) as i32 + self.displacement.1,
+        )
+    }
+}
+
+impl Object {
+    pub fn draw<C>(&self, trans: Transformation, color: C::Pixel, canvas: &mut C)
+    where
+        C: Canvas,
+        C::Pixel: 'static,
+    {
+        use Object::*;
+
+        match self {
+            Triangle { w, h } => {
+                let points = vec![Point::new(0, 0), Point::new(0, -h), Point::new(*w, 0)]
+                    .into_iter()
+                    .map(|p| trans.transform(p))
+                    .collect::<Vec<_>>();
+
+                drawing::draw_polygon_mut(canvas, &points, color);
+            }
+            Square { w } => {
+                let points = vec![
+                    Point::new(0, 0),
+                    Point::new(0, -w),
+                    Point::new(*w, -w),
+                    Point::new(*w, 0),
+                ]
+                .into_iter()
+                .map(|p| trans.transform(p))
+                .collect::<Vec<_>>();
+
+                drawing::draw_polygon_mut(canvas, &points, color);
+            }
+            Polygon { points, center: _ } => {
+                let points = points
+                    .iter()
+                    .map(|&p| trans.transform(p))
+                    .collect::<Vec<_>>();
+
+                drawing::draw_polygon_mut(canvas, &points, color);
+            }
+            Circle { center, radius } => {
+                let center = trans.transform(*center);
+                drawing::draw_filled_circle_mut(canvas, (center.x, center.y), *radius, color);
+            }
+            _ => unreachable!(),
+        }
+    }
+
+    fn is_ok(&self, trans: Transformation) -> bool {
+        use Object::*;
+
+        match self {
+            Triangle { w, h: _ } => {
+                let points = vec![Point::new(0, 0), Point::new(*w, 0)]
+                    .into_iter()
+                    .map(|p| trans.transform(p))
+                    .collect::<Vec<_>>();
+
+                points[0] != points[1]
+            }
+            _ => true,
+        }
+    }
+}
+
+fn fitness(a: &RgbaImage, b: &RgbaImage) -> f32 {
+    a.pixels()
+        .zip(b.pixels())
+        .map(|(p1, p2)| {
+            p1.0.iter()
+                .zip(p2.0.iter())
+                .map(|(&v, &w)| (v as f32 - w as f32).powi(2))
+                .sum::<f32>()
+        })
+        .sum()
+}
+
+fn blend_images<P, C1, C2>(into: &mut C1, from: &C2)
+where
+    C1: Canvas<Pixel = P>,
+    C2: Canvas<Pixel = P>,
+{
+    let (w, h) = from.dimensions();
+
+    for j in 0..h {
+        for i in 0..w {
+            into.draw_pixel(i, j, from.get_pixel(i, j));
+        }
+    }
+}
+
+fn main() {
+    let original = image::io::Reader::open("mona_head.jpg")
+        .unwrap()
+        .decode()
+        .unwrap()
+        .into_rgba8();
+
+    let w = original.width() as i32;
+    let h = original.height() as i32;
+    let worst_score = (255.0 * 255.0) * 3. * w as f32 * h as f32;
+    // let worst_score = w as f32 * h as f32;
+
+    let mut blank = image::RgbaImage::new(w as _, h as _);
+    blank
+        .pixels_mut()
+        .for_each(|p| *p = image::Rgba([255, 255, 255, 255]));
+
+    let mut objects = vec![];
+    let mut score = std::f32::INFINITY;
+    let mut rng = rand::thread_rng();
+    let mut j = 1;
+
+    for i in 1.. {
+        let mut current_objects = objects.clone();
+        let mut dirty = false;
+
+        if rng.gen::<f32>() < MutationConfig::FIGURE_REMOVE && !current_objects.is_empty() {
+            dirty = true;
+            let idx = rng.gen_range(0..current_objects.len());
+            current_objects.remove(idx);
+        }
+
+        if rng.gen::<f32>() < MutationConfig::FIGURE_ADD
+            && current_objects.len() < MutationConfig::MAX_FIGURES
+        {
+            dirty = true;
+            // let triangle = Object::Triangle {
+            //     w: rng.gen_range(10..=w),
+            //     h: rng.gen_range(10..=h),
+            // };
+            // let transform = Transformation::new(
+            //     rng.gen_range(0.0..=3.1415),
+            //     (rng.gen_range(0..=w), rng.gen_range(0..=h)),
+            // );
+            // let mut color = [0, 0, 0, 0];
+            // rng.fill_bytes(&mut color);
+
+            let figure = if rng.gen() {
+                Object::Triangle {
+                    w: rng.gen_range(10..=w / 2),
+                    h: rng.gen_range(10..=h / 2),
+                }
+                // let n_points =
+                // rng.gen_range(3..=MutationConfig::FIGURE_POLYGON_MAX_POINTS);
+                // let mut points = vec![];
+                // let (mut cx, mut cy) = (0, 0);
+                // for _ in 0..n_points {
+                //     let x = rng.gen_range(10..=w / 2);
+                //     let y = rng.gen_range(10..=h / 2);
+                //     cx += x;
+                //     cy += y;
+                //     points.push(Point::new(x, y));
+                // }
+
+                // cx /= n_points as i32;
+                // cy /= n_points as i32;
+
+                // points.sort_by(|p1, p2| {
+                //     let angle1 = ((p1.y - cy) as f32).atan2((p1.x - cx) as
+                // f32);     let angle2 = ((p2.y - cy) as
+                // f32).atan2((p2.x - cx) as f32);     angle1.
+                // partial_cmp(&angle2).unwrap() });
+                // Object::Polygon {
+                //     center: Point::new(cx, cy),
+                //     points,
+                // }
+            } else {
+                Object::Circle {
+                    radius: rng.gen_range(1..w.min(h) / 2),
+                    center: Point::new(0, 0),
+                }
+            };
+
+            let transform = Transformation::new(
+                rng.gen_range(0.0..=3.1415),
+                (rng.gen_range(0..=w), rng.gen_range(0..=h)),
+            );
+            let mut color = [0, 0, 0, 0];
+            rng.fill_bytes(&mut color);
+            color[3] = 255;
+
+            current_objects.push((figure, transform, Rgba(color)));
+        }
+
+        if rng.gen::<f32>() < MutationConfig::FIGURE_REORDER && current_objects.len() > 1 {
+            dirty = true;
+            let uniform = Uniform::new(0, current_objects.len());
+            let idx = uniform.sample(&mut rng);
+            let object = current_objects.remove(idx);
+            let new_idx = uniform.sample(&mut rng);
+            current_objects.insert(new_idx, object);
+        }
+
+        for object in &mut current_objects {
+            if rng.gen::<f32>() < MutationConfig::FIGURE_MUTATE {
+                if rng.gen::<f32>() < MutationConfig::FIGURE_COLOR_RED {
+                    dirty = true;
+                    (object.2).0[0] = rng.gen::<u8>();
+                }
+                if rng.gen::<f32>() < MutationConfig::FIGURE_COLOR_GREEN {
+                    dirty = true;
+                    (object.2).0[1] = rng.gen::<u8>();
+                }
+                if rng.gen::<f32>() < MutationConfig::FIGURE_COLOR_BLUE {
+                    dirty = true;
+                    (object.2).0[2] = rng.gen::<u8>();
+                }
+                if rng.gen::<f32>() < MutationConfig::FIGURE_COLOR_ALPHA {
+                    dirty = true;
+                    (object.2).0[3] = rng.gen::<u8>();
+                }
+                if rng.gen::<f32>() < MutationConfig::FIGURE_TRANSFORM_ANGLE {
+                    let angle = (object.1.angle + rng.gen_range(-PI..PI) + 2. * PI) % (2. * PI);
+                    object.1.set_angle(angle);
+                }
+                if rng.gen::<f32>() < MutationConfig::FIGURE_TRANSFORM_DISPLACEMENT {
+                    dirty = true;
+                    (object.1).displacement.0 += rng.gen_range(-w / 2..w / 2);
+                    (object.1).displacement.1 += rng.gen_range(-h / 2..h / 2);
+                }
+                if rng.gen::<f32>() < MutationConfig::FIGURE_MODIFY {
+                    dirty = true;
+                    if let Object::Triangle {
+                        w: width,
+                        h: height,
+                    } = &mut object.0
+                    {
+                        if rng.gen::<f32>() < MutationConfig::FIGURE_MODIFY_SIZE {
+                            *width = rng.gen_range(10..=w);
+                        }
+                        if rng.gen::<f32>() < MutationConfig::FIGURE_MODIFY_SIZE {
+                            *height = rng.gen_range(10..=h);
+                        }
+                    }
+
+                    if let Object::Polygon { center, points } = &mut object.0 {
+                        if rng.gen::<f32>() < MutationConfig::FIGURE_MODIFY_SIZE {
+                            let scale =
+                                rng.gen_range(0.25..0.75) * if rng.gen() { 1.0 } else { -1.0 };
+                            for point in points.iter_mut() {
+                                let vx = (center.x - point.x) as f32;
+                                let vy = (center.y - point.y) as f32;
+                                point.x += (vx * scale) as i32;
+                                point.y += (vy * scale) as i32;
+                            }
+                        }
+
+                        if rng.gen::<f32>() < MutationConfig::FIGURE_MODIFY_POINTS
+                            && points.len() > 3
+                        {
+                            let idx = rng.gen_range(0..points.len());
+                            points.remove(idx);
+                        }
+
+                        if rng.gen::<f32>() < MutationConfig::FIGURE_MODIFY_POINTS
+                            && points.len() < MutationConfig::FIGURE_POLYGON_MAX_POINTS
+                        {
+                            let x = rng.gen_range(5..=w / 2);
+                            let y = rng.gen_range(5..=h / 2);
+                            let angle = ((y - center.y) as f32).atan2((x - center.x) as f32);
+                            if let Err(idx) = points.binary_search_by(|p| {
+                                ((p.y - center.y) as f32)
+                                    .atan2((p.x - center.x) as f32)
+                                    .partial_cmp(&angle)
+                                    .unwrap()
+                            }) {
+                                points.insert(idx, Point::new(x, y));
+                            }
+                        }
+                    }
+                    if let Object::Circle { center: _, radius } = &mut object.0 {
+                        if rng.gen::<f32>() < MutationConfig::FIGURE_MODIFY_SIZE {
+                            let scale = rng.gen_range(0.5..2.0);
+                            *radius = (*radius as f32 * scale) as i32;
+                        }
+                    }
+                }
+            }
+        }
+
+        if !dirty {
+            continue;
+        }
+
+        let mut image = Blend(blank.clone());
+        for object in &current_objects {
+            object.0.draw(object.1, object.2, &mut image);
+        }
+
+        let current_score = fitness(&original, &image.0) / worst_score;
+        if current_score < score {
+            println!(
+                "{:09}: {:.2}% (figures: {:03})",
+                i,
+                (1. - current_score) * 100.,
+                objects.len()
+            );
+            objects = current_objects;
+            score = current_score;
+
+            let _ = image.0.save(&format!("rng2{:05}.jpg", j));
+            j += 1;
+        }
+    }
+}

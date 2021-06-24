@@ -1,0 +1,11 @@
+let g:ale_fix_on_save = 1
+
+if !exists("g:ale_fixers")
+    let g:ale_fixers = {}
+endif
+let g:ale_linters['haskell'] = ['stack_ghc']
+let g:ale_fixers['haskell'] = ['hlint']
+let g:ale_haskell_hlint_executable = 'stack'
+let g:ale_haskell_brittany_executable = 'stack'
+let g:LanguageClient_serverStderr = '/tmp/langclient'
+let g:LanguageClient_rootMarkers = ['.root']

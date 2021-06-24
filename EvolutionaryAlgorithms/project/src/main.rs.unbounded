@@ -1,0 +1,354 @@
+use std::io::prelude::*;
+use std::time::Instant;
+
+use image::RgbaImage;
+use imageproc::drawing::{self, Blend, Canvas};
+use ndarray::parallel::prelude::*;
+use ndarray::prelude::*;
+use ndarray_rand::RandomExt;
+use rand::prelude::*;
+use rand_distr::{StandardNormal, Uniform, WeightedIndex};
+
+type Scalar = f32;
+type Point = imageproc::point::Point<i32>;
+
+#[derive(Clone, Copy)]
+struct Transformation {
+    sincos: (f32, f32),
+    displacement: (i32, i32),
+}
+
+enum Object {
+    Triangle { w: i32, h: i32 },
+    Square { w: i32 },
+}
+
+impl Transformation {
+    fn new(angle: f32, displacement: (i32, i32)) -> Self {
+        Self {
+            sincos: angle.sin_cos(),
+            displacement,
+        }
+    }
+
+    fn transform(&self, point: Point) -> Point {
+        let (px, py) = (point.x as f32, point.y as f32);
+        let (s, c) = self.sincos;
+
+        Point::new(
+            (px * c - py * s) as i32 + self.displacement.0,
+            (px * s + py * c) as i32 + self.displacement.1,
+        )
+    }
+}
+
+impl Object {
+    pub fn draw<C>(&self, trans: Transformation, color: C::Pixel, canvas: &mut C)
+    where
+        C: Canvas,
+        C::Pixel: 'static,
+    {
+        use Object::*;
+
+        match self {
+            Triangle { w, h } => {
+                let points = vec![Point::new(0, 0), Point::new(0, -h), Point::new(*w, 0)]
+                    .into_iter()
+                    .map(|p| trans.transform(p))
+                    .collect::<Vec<_>>();
+
+                drawing::draw_polygon_mut(canvas, &points, color);
+            }
+            Square { w } => {
+                let points = vec![
+                    Point::new(0, 0),
+                    Point::new(0, -w),
+                    Point::new(*w, -w),
+                    Point::new(*w, 0),
+                ]
+                .into_iter()
+                .map(|p| trans.transform(p))
+                .collect::<Vec<_>>();
+
+                drawing::draw_polygon_mut(canvas, &points, color);
+            }
+        }
+    }
+
+    fn is_ok(&self, trans: Transformation) -> bool {
+        use Object::*;
+
+        match self {
+            Triangle { w, h } => {
+                let points = vec![Point::new(0, 0), Point::new(*w, 0)]
+                    .into_iter()
+                    .map(|p| trans.transform(p))
+                    .collect::<Vec<_>>();
+
+                points[0] != points[1]
+            }
+            _ => unreachable!(),
+        }
+    }
+}
+
+fn fitness(a: &RgbaImage, b: &RgbaImage) -> f32 {
+    a.pixels()
+        .zip(b.pixels())
+        .map(|(p1, p2)| {
+            p1.0.iter()
+                .zip(p2.0.iter())
+                .map(|(&v, &w)| (v as f32 - w as f32).powi(2))
+                .sum::<f32>()
+        })
+        .sum()
+}
+
+fn standard_matrix(w: usize, h: usize) -> Array2<Scalar> {
+    Array2::random((w, h), StandardNormal)
+}
+
+fn es<F>(
+    f: F,
+    domain: &[(Scalar, Scalar)],
+    problem_size: usize,
+    mu: usize,
+    lambda: usize,
+    k: Scalar,
+    iterations_num: usize,
+) -> (Array1<Scalar>, Scalar)
+where
+    F: Fn(ArrayView1<Scalar>) -> Scalar + Send + Sync,
+{
+    let mut p = Array2::zeros((mu, problem_size));
+    for i in 0..problem_size {
+        let col = Array1::random(mu, Uniform::new_inclusive(domain[i].0, domain[i].1));
+        p.slice_mut(s![.., i]).assign(&col);
+    }
+
+    // println!("{}", p);
+
+    let mut p_scores = Array1::from(
+        p.view()
+            .outer_iter()
+            .into_par_iter()
+            .map(&f)
+            .collect::<Vec<_>>(),
+    );
+    let mut sigma = Array2::from_elem((mu, problem_size), 1.0);
+
+    let tau = k / ((2 * problem_size) as Scalar).sqrt();
+    let tau0 = k / (2.0 * (problem_size as Scalar).sqrt()).sqrt();
+
+    let mut rng = rand::thread_rng();
+    let now = Instant::now();
+
+    for iter in 1..=iterations_num {
+        print!(
+            "\r{}/{}, {}ms/iter",
+            iter,
+            iterations_num,
+            (now.elapsed().as_micros() / (iter as u128)) as f32 / 1000.0
+        );
+
+        // Parent selection
+        let mut probability = -p_scores.clone()
+            + *p_scores
+                .iter()
+                .max_by(|a, b| a.partial_cmp(&b).unwrap())
+                .unwrap();
+
+        if probability.sum() > 0.0 {
+            probability /= probability.sum();
+        }
+        if probability.sum() <= 0.0 {
+            probability = Array1::ones(mu) / mu as Scalar;
+        }
+
+        let dist = WeightedIndex::new(&probability).expect("weighted_index");
+        let mut children = Array2::zeros((lambda, problem_size));
+        let mut children_sigma = Array2::zeros((lambda, problem_size));
+        let mut count = 0;
+        for idx in dist.sample_iter(&mut rng) {
+            children
+                .slice_mut(s![count, ..])
+                .assign(&p.row(idx).to_owned());
+            children_sigma
+                .slice_mut(s![count, ..])
+                .assign(&sigma.row(idx).to_owned());
+            count += 1;
+
+            if count == lambda {
+                break;
+            }
+        }
+
+        // Mutation
+        let epsilon_i = standard_matrix(lambda, problem_size) * tau;
+        let epsilon_0 = standard_matrix(lambda, 1) * tau0;
+        let mut epsilon = epsilon_i + epsilon_0;
+        epsilon.iter_mut().for_each(|v| *v = v.exp());
+
+        children_sigma = children_sigma * epsilon;
+        children = children + standard_matrix(lambda, problem_size) * children_sigma.clone();
+
+        let children_scores = Array1::from(
+            children
+                .view()
+                .outer_iter()
+                .into_par_iter()
+                .map(&f)
+                .collect::<Vec<_>>(),
+        );
+
+        let mut scores = children_scores
+            .iter()
+            .enumerate()
+            .map(|(i, v)| (*v, i, true))
+            .chain(p_scores.iter().enumerate().map(|(i, v)| (*v, i, false)))
+            .collect::<Vec<_>>();
+
+        scores.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap());
+        let mut i = 0;
+        for (_, idx, is_child) in scores.into_iter() {
+            let (v, s) = if is_child {
+                (
+                    children.row(idx).to_owned(),
+                    children_sigma.row(idx).to_owned(),
+                )
+            } else {
+                (p.row(idx).to_owned(), sigma.row(idx).to_owned())
+            };
+
+            if v.iter()
+                .enumerate()
+                .any(|(i, &e)| e < domain[i].0 || e > domain[i].1)
+            {
+                continue;
+            }
+
+            p.slice_mut(s![i, ..]).assign(&v);
+            sigma.slice_mut(s![i, ..]).assign(&s);
+
+            i += 1;
+            if i == mu {
+                break;
+            }
+        }
+
+        p_scores = Array1::from(
+            p.view()
+                .outer_iter()
+                .into_par_iter()
+                .map(&f)
+                .collect::<Vec<_>>(),
+        );
+    }
+
+    println!();
+
+    p_scores
+        .into_iter()
+        .enumerate()
+        .min_by(|a, b| a.1.partial_cmp(b.1).unwrap())
+        .map(|(i, s)| (p.row(i).to_owned(), *s))
+        .expect("p_scores")
+}
+
+fn main() {
+    let original = {
+        image::io::Reader::open("mona.jpg")
+            .unwrap()
+            .decode()
+            .unwrap()
+    }
+    .into_rgba8();
+    let mut image = image::RgbaImage::new(300, 447);
+    image
+        .pixels_mut()
+        .for_each(|p| *p = image::Rgba([255, 255, 255, 255]));
+    let mut image = Blend(image);
+
+    // let triangle = Object::Triangle { w: 50, h: 20 };
+    // let square = Object::Square { w: 50 };
+    // let transform = Transformation::new(std::f32::consts::FRAC_PI_4, (100, 100));
+    // square.draw(transform, image::Rgba([255, 0, 0, 255]), &mut canvas);
+    // triangle.draw(transform, image::Rgba([0, 0, 255, 200]), &mut canvas);
+
+    // canvas.0.save("test.png").ok();
+
+    let f = |img: RgbaImage| {
+        return move |v: ArrayView1<Scalar>| {
+            if let Some([w, h, angle, x, y, r, g, b]) = v.as_slice() {
+                let triangle = Object::Triangle {
+                    w: *w as i32,
+                    h: *h as i32,
+                };
+
+                let transform = Transformation::new(*angle, (*x as i32, *y as i32));
+
+                if !triangle.is_ok(transform) {
+                    return 1.;
+                }
+
+                let color = image::Rgba([*r as u8, *g as u8, *b as u8, 255]);
+                let mut c = Blend(img.clone());
+
+                triangle.draw(transform, color, &mut c);
+                fitness(&original, &c.0) / 26159557500.
+            } else {
+                panic!("wtf")
+            }
+        };
+    };
+
+    let mut last_fit = 1.0;
+
+    let mut j = 0;
+    for i in 0..100_000 {
+        let f = f.clone()(image.0.clone());
+
+        let (res, fit) = es(
+            &f,
+            &[
+                (10., 300.),
+                (10., 447.),
+                (0., 3.1415),
+                (0., 300.),
+                (0., 447.),
+                (0., 255.),
+                (0., 255.),
+                (0., 255.),
+            ],
+            8,
+            10,
+            10,
+            5.0,
+            500,
+        );
+
+        if fit < last_fit {
+            if let Some([w, h, angle, x, y, r, g, b]) = res.as_slice() {
+                let triangle = Object::Triangle {
+                    w: *w as i32,
+                    h: *h as i32,
+                };
+
+                let transform = Transformation::new(*angle, (*x as i32, *y as i32));
+                let color = image::Rgba([*r as u8, *g as u8, *b as u8, 255]);
+
+                triangle.draw(transform, color, &mut image);
+            }
+            last_fit = fit;
+            image.0.save(&format!("test{}.png", j)).ok();
+            j += 1;
+        }
+
+        println!(
+            "{} -> {:.2}% ({:.2}%)",
+            res,
+            (1. - fit) * 100.,
+            (1. - last_fit) * 100.
+        );
+    }
+}

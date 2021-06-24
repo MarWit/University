@@ -1,0 +1,14 @@
+set terminal png
+set output '5onemax50_500.png'
+
+
+set xlabel "iters"
+set ylabel "fitness"
+set autoscale
+
+set grid
+set style data lines
+
+plot "5onemax50_500_pbil" using 1:2 title "PBIL", \
+     "5onemax50_500_umda" using 1:2 title "UMDA", \
+     "5onemax50_500_cga" using 1:2 title "CGA"

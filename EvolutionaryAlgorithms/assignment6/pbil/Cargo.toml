@@ -1,0 +1,11 @@
+[package]
+name = "pbil"
+version = "0.1.0"
+authors = ["MarWit <contact@marwit.rs>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.7"
+ctrlc = "3.1"

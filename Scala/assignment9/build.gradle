@@ -1,0 +1,27 @@
+plugins {
+    id 'com.github.hierynomus.scalariform' version '0.4.0' apply false
+    id 'com.github.maiflai.scalatest' version '0.26' apply false
+    id 'cz.augi.gradle.wartremover' version '0.9.10' apply false
+    id 'org.scoverage' version '4.0.1' apply false
+}
+
+allprojects {
+    apply plugin: 'scala'
+    apply plugin: 'com.github.hierynomus.scalariform'
+    apply plugin: 'com.github.maiflai.scalatest'
+    apply plugin: 'cz.augi.gradle.wartremover'
+    apply plugin: 'org.scoverage'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+    implementation 'org.scala-lang:scala-library:2.12.0'
+
+        testImplementation 'org.scalatest:scalatest_2.12:3.0.8'
+        testRuntimeOnly 'org.pegdown:pegdown:1.6.0'
+    }
+
+    build.dependsOn formatAllScala
+}
