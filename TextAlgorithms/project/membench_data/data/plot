@@ -1,0 +1,15 @@
+set terminal png
+set output 'output.png'
+
+set xlabel "data size"
+
+set autoscale
+
+set ylabel "max memory usage"
+
+set grid
+set style data linespoints
+
+plot "kasai" using 1:2 title "Kasai", \
+     "9n" using 1:2 title "9n", \
+     "6n" using 1:2 title "6n"

@@ -12,5 +12,6 @@ _Artificial Intelligence_ subject,
 * [Rust] [Pictures approximated by evolutionary algorithm](https://github.com/MarWit/University/tree/master/EvolutionaryAlgorithms/project),
 * [Rust] [Project for _Database's Application_ course](https://github.com/MarWit/University/tree/master/DatabaseApplications/project) - simple database application written with DDD in mind,
 * [C] [ext2 read-only filesystem](https://github.com/MarWit/University/tree/master/OperatingSystems/project2) written using FUSE,
+* [Rust] [Implementation and comparision of different versions of LCP algorithm](https://github.com/MarWit/University/tree/master/TextAlgorithms/project),
 * [C] [Solutions to some classic problems in concurrency](https://github.com/MarWit/University/tree/master/OperatingSystems/lab2),
 * [C#] [SIDious](https://github.com/MarWit/University/tree/master/ObjectOrientedProgramming/project) - MOS 6510 CPU emulator with partially working SID, written as project for _Object programming_ course.

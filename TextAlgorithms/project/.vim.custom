@@ -1,0 +1,26 @@
+let g:ale_rust_rustfmt_options = '+nightly'
+let g:ale_rust_cargo_use_clippy = 1
+let g:ale_fixers = {
+\   'rust': ['rustfmt']
+\}
+let g:ale_fix_on_save = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+
+function RecompilePDF()
+    if exists("b:md_source") == 0
+        let b:md_source = tempname()
+    endif
+
+    exec 'silent! write!' b:md_source
+
+    let l:file_now = expand('%:p')
+    let l:file_name = expand('%:r')
+    let l:path = expand('%:p:h')
+    let l:pdf_file = l:path . '/' . l:file_name . '.pdf'
+
+    let l:command = ['pandoc', '--pdf-engine=xelatex', '-f', 'markdown', b:md_source, '-o', l:pdf_file]
+    call jobstart(l:command)
+endfunction
+
+au CursorHold,CursorHoldI *.md :call RecompilePDF()
